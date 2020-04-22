@@ -1,14 +1,25 @@
 import Const from '../constants';
+
 import Food from '../models/food';
+import Snake from '../models/snake';
+
 import * as Utils from '../utils/math';
 
-function FoodFactory(p) {
+function ShapeFactory(name, p) {
   const options = {
     size: Const.GRID_SIZE,
     position: generatePosition(),
   };
 
-  return new Food(p, options);
+  if (name === 'food') {
+    return new Food(p, options);
+  }
+
+  if (name === 'snake') {
+    return new Snake(p, options);
+  }
+
+  return {};
 }
 
 function generatePosition() {
@@ -22,4 +33,4 @@ function getRandomPosition() {
   return Utils.getRandomInt(0, Const.WINDOW_SIZE / Const.GRID_SIZE) * Const.GRID_SIZE;
 }
 
-export default FoodFactory;
+export default ShapeFactory;

@@ -1,10 +1,7 @@
-function Food(p, { size, position }) {
-  this.p = p;
+import Base from './base';
 
-  this.size = size;
-
-  this.x = position.x;
-  this.y = position.y;
+function Food(p, options) {
+  Base.call(this, p, options);
 }
 
 Food.prototype.draw = function () {

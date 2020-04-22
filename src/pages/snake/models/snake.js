@@ -1,13 +1,13 @@
-function Snake(p, { size, window }) {
-  this.p = p;
+import Base from './base';
 
-  this.size = size;
+function Snake(p, options) {
+  Base.call(this, p, options);
+
   this.window = window;
 
-  this.x = 0;
-  this.y = 0;
   this.xspeed = 1;
   this.yspeed = 0;
+
   this.length = 0;
   this.tail = [];
 }
