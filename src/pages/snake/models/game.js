@@ -4,12 +4,13 @@ import Grid from './grid';
 
 import ShapeFactory from '../factories/ShapeFactory';
 
-function Game(p) {
+function Game(p, options) {
   this.p = p;
+  this.options = options;
 
-  this.grid = new Grid(p);
-  this.snake = ShapeFactory('snake', this.p);
-  this.food = ShapeFactory('food', this.p);
+  this.grid = new Grid(p, this.options);
+  this.snake = ShapeFactory('snake', this.p, this.options);
+  this.food = ShapeFactory('food', this.p, this.options);
 
   this.gameIsPaused = true;
   this.score = 0;
@@ -42,8 +43,8 @@ Game.prototype.stop = function() {
 }
 
 Game.prototype.setup = function() {
-  this.p.frameRate(Const.FRAME_RATE);
-  this.p.createCanvas(Const.WINDOW_SIZE, Const.WINDOW_SIZE);
+  this.p.frameRate(this.options.FRAME_RATE);
+  this.p.createCanvas(this.options.WINDOW_SIZE, this.options.WINDOW_SIZE);
   this.grid.draw();
   this.food.draw();
   this.snake.draw();
@@ -55,7 +56,7 @@ Game.prototype.draw = function() {
   this.grid.draw();
   if (this.snake.canEat(this.food)) {
     this.snake.eat();
-    this.food = ShapeFactory('food', this.p);
+    this.food = ShapeFactory('food', this.p, this.options);
   }
 
   this.food.draw();
@@ -76,18 +77,18 @@ Game.prototype.pausedGameDraw = function() {
   if (!this.gameIsPaused) return;
 
   this.p.fill('rgba(0,0,0, 0.7)');
-  this.p.rect(0, 0, Const.WINDOW_SIZE, Const.WINDOW_SIZE);
+  this.p.rect(0, 0, this.options.WINDOW_SIZE, this.options.WINDOW_SIZE);
 
   this.p.textSize(22);
   this.p.textAlign(this.p.CENTER);
   this.p.fill('white');
-  this.p.text('Press <SPACE> to start or pause', 0, Const.WINDOW_SIZE / 2 - 50, Const.WINDOW_SIZE);
+  this.p.text('Press <SPACE> to start or pause', 0, this.options.WINDOW_SIZE / 2 - 50, this.options.WINDOW_SIZE);
 
   if (this.score > 0) {
 
     this.p.textSize(25);
     this.p.fill('yellow');
-    this.p.text(`Congratulation: Your score is ${this.score}`, 0, Const.WINDOW_SIZE / 2, Const.WINDOW_SIZE);
+    this.p.text(`Congratulation: Your score is ${this.score}`, 0, this.options.WINDOW_SIZE / 2, this.options.WINDOW_SIZE);
   }
 }
 

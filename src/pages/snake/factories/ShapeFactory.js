@@ -1,37 +1,35 @@
-import Const from '../constants';
-
 import Food from '../models/food';
 import Snake from '../models/snake';
 
 import * as Utils from '../utils/math';
 
-function ShapeFactory(name, p) {
-  const options = {
-    size: Const.GRID_SIZE,
-    window: Const.WINDOW_SIZE,
-    position: generatePosition(),
+function ShapeFactory(name, p, options) {
+  const params = {
+    size: options.GRID_SIZE,
+    window: options.WINDOW_SIZE,
+    position: generatePosition(options),
   };
 
   if (name === 'food') {
-    return new Food(p, options);
+    return new Food(p, params);
   }
 
   if (name === 'snake') {
-    return new Snake(p, options);
+    return new Snake(p, params);
   }
 
   return {};
 }
 
-function generatePosition() {
-  const x = getRandomPosition();
-  const y = getRandomPosition();
+function generatePosition(options) {
+  const x = getRandomPosition(options);
+  const y = getRandomPosition(options);
 
   return { x, y };
 }
 
-function getRandomPosition() {
-  return Utils.getRandomInt(0, Const.WINDOW_SIZE / Const.GRID_SIZE) * Const.GRID_SIZE;
+function getRandomPosition(options) {
+  return Utils.getRandomInt(0, options.WINDOW_SIZE / options.GRID_SIZE) * options.GRID_SIZE;
 }
 
 export default ShapeFactory;

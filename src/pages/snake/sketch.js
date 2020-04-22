@@ -1,7 +1,9 @@
-import Game from './models/game';
+import GameFactory from './factories/GameFactory';
 
-export default function sketch(p) {
-  const game = new Game(p);
+export default function sketch(name) {
+  return (p) => {
+    const game = GameFactory(name, p);
 
-  game.init();
+    game.init();
+  }
 };

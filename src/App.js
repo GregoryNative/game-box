@@ -15,7 +15,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/snake">
-          <SnakeGameRoute/>
+          <SnakeGameRoute />
         </Route>
         <Route path="/">
           <IndexRoute />
