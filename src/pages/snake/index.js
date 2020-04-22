@@ -18,6 +18,9 @@ function IndexRoute() {
   return (
     <header className="App-header">
       <ul>
+        <li className="li-header">
+          Snake
+        </li>
         <li>
           <Link to="/snake/classic">Classic</Link>
         </li>

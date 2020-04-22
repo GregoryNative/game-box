@@ -8,8 +8,8 @@ function IndexRoute() {
     <div className="App">
       <header className="App-header">
         <ul>
-          <li>
-            <Link to="/">Home</Link>
+          <li className="li-header">
+            Games
           </li>
           <li>
             <Link to="/snake">Snake</Link>
