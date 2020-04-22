@@ -36,6 +36,17 @@ Snake.prototype.eat = function() {
   // document.title = `Snake length: ${this.length}`;
 }
 
+Snake.prototype.death = function() {
+  for (let i = 0; i < this.tail.length; i++) {
+    if (this.p.dist(this.x, this.y, this.tail[i].x, this.tail[i].y) < 1) {
+      console.log('stop')
+      this.length = 0;
+      this.tail = [];
+      break;
+    }
+  }
+}
+
 Snake.prototype.update = function() {
   if (this.length === this.tail.length)
     for (let i = 0; i < this.tail.length - 1; i++)

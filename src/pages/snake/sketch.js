@@ -26,6 +26,7 @@ export default function sketch(p) {
 
     food.draw();
 
+    snake.death();
     snake.update();
     snake.draw();
   };
