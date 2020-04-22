@@ -1,8 +1,9 @@
 import Const from './constants';
 
-import Food from './models/food';
 import Grid from './models/grid';
 import Snake from './models/snake';
+
+import FoodFactory from './factories/FoodFactory';
 
 export default function sketch(p) {
   const snake = new Snake(p, { size: Const.GRID_SIZE, window: Const.WINDOW_SIZE });
@@ -12,13 +13,7 @@ export default function sketch(p) {
   p.setup = function() {
     p.frameRate(Const.FRAME_RATE);
     p.createCanvas(Const.WINDOW_SIZE, Const.WINDOW_SIZE);
-    food = new Food(p, {
-      size: Const.GRID_SIZE,
-      position: {
-        x: Const.GRID_SIZE,
-        y: Const.GRID_SIZE * 7,
-      }
-    });
+    food = FoodFactory(p);
   };
 
   p.draw = function() {
