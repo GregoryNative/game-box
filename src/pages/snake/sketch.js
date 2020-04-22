@@ -19,6 +19,11 @@ export default function sketch(p) {
   p.draw = function() {
     grid.draw();
 
+    if (snake.canEat(food)) {
+      snake.eat();
+      food = FoodFactory(p);
+    }
+
     food.draw();
 
     snake.update();
