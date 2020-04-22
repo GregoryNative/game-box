@@ -3,7 +3,7 @@ import Base from './base';
 function Snake(p, options) {
   Base.call(this, p, options);
 
-  this.window = window;
+  this.window = options.window;
 
   this.xspeed = 1;
   this.yspeed = 0;
@@ -23,6 +23,12 @@ Snake.prototype.canEat = function(food) {
   return this.p.dist(this.x, this.y, food.x, food.y) < 1;
 }
 
+Snake.prototype.isNotAlive = function() {
+  return this.tail.some(tailItem =>
+    this.p.dist(this.x, this.y, tailItem.x, tailItem.y) < 1
+  );
+}
+
 Snake.prototype.canChangeDirection = function(xspeed, yspeed) {
   if (this.tail.length > 0) {
     return xspeed + this.xspeed !== 0 || yspeed + this.yspeed !== 0;
@@ -31,20 +37,17 @@ Snake.prototype.canChangeDirection = function(xspeed, yspeed) {
   return true;
 }
 
+Snake.prototype.getScore = function() {
+  return this.length;
+}
+
 Snake.prototype.eat = function() {
   this.length++;
-  // document.title = `Snake length: ${this.length}`;
 }
 
 Snake.prototype.death = function() {
-  for (let i = 0; i < this.tail.length; i++) {
-    if (this.p.dist(this.x, this.y, this.tail[i].x, this.tail[i].y) < 1) {
-      console.log('stop')
-      this.length = 0;
-      this.tail = [];
-      break;
-    }
-  }
+  this.length = 0;
+  this.tail = [];
 }
 
 Snake.prototype.update = function() {

@@ -8,6 +8,7 @@ import * as Utils from '../utils/math';
 function ShapeFactory(name, p) {
   const options = {
     size: Const.GRID_SIZE,
+    window: Const.WINDOW_SIZE,
     position: generatePosition(),
   };
 
